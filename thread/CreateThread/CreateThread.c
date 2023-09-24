@@ -1,15 +1,9 @@
 ﻿#include <stdio.h>
 #include <Windows.h>
 
-int g_data = 12;
-
 DWORD WINAPI routine(LPVOID arg)
 {
-    int i;
     printf("message : \"%s\"\n", (const char*)arg);
-    for (i = 0; i < 10; ++i)
-        ++g_data;
-    printf("g_data in new thread %d\n", g_data);
     return 0;
 }
 
@@ -27,6 +21,5 @@ int main(void)
     WaitForSingleObject(threadHandle, INFINITE);
     CloseHandle(threadHandle);
     threadHandle = NULL;
-    printf("g_data in main thread : %d\n", g_data);
     return 0;
 }
